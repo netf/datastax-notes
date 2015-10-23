@@ -7,7 +7,14 @@
 When you startup a new node there are four settings that must be changed in *cassandra.yaml*
 ```
 cluster_name
+```
+All nodes in a cluster must agree on a name of a cluster they are part of
+```
 rpc_address
 listen_address
+```
+IP addresses that the nodes/clients will be communicating over
+```
 -seeds
 ```
+List of nodes to initially connect to gather cluster topology
