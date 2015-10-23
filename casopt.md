@@ -25,3 +25,7 @@ We add new nodes in following scenarios
 * Operational headroom - compactions, repairs
 
 #### [Adding nodes best practices] (https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
+When adding new nodes to a **single token** cluster there are some best practices to follow
+* It is best if we can double the size of a cluster because adding single node can cause cluster to be unbalanced
+  * can minimalize latency impact on a production load, where token recalculation and data movement can affect performance
+  * hot spots are minimalized during data movement to a new nodes
