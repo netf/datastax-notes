@@ -2,9 +2,7 @@
 * [Operations and performance tuning](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning)
 
 ### Managing Cassandra
-#### Adding nodes
-* [Adding nodes](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-managing-cassandra-and-adding)
-
+#### [Adding nodes](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-managing-cassandra-and-adding)
 When you startup a new node there are four settings that must be changed in *cassandra.yaml*
 ```
 cluster_name
