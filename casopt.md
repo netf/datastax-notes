@@ -34,3 +34,4 @@ With **vnodes cluster** we can add nodes when needed because
 Adding multiple nodes at the same time
 * **vnodes cluster** - start up all nodes at once, otherwise you will end up pushing the same data to new nodes more than once as data reshuffles its position
 * **single-token cluster** there is no much difference - recommendation is one at the time to minimalize streaming effort
+#### [Add, Remove, Decommission, Move Nodes](https://academy.datastax.com/courses/ds210-datastax-enterprise-operations-and-performance-tuning/managing-cassandra-add-remove)
