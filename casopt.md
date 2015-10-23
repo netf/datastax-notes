@@ -25,7 +25,12 @@ We add new nodes in following scenarios
 * Operational headroom - compactions, repairs
 
 #### [Adding nodes best practices] (https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
-When adding new nodes to a **single token** cluster there are some best practices to follow
+When adding new nodes to a **single-token cluster** there are some best practices to follow
 * It is best if we can double the size of a cluster because adding single node can cause cluster to be unbalanced
   * can minimalize latency impact on a production load, where token recalculation and data movement can affect performance
   * hot spots are minimalized during data movement to a new nodes
+With **vnodes cluster** we can add nodes when needed because
+* token ranges are distributed and assigned automatically. New node coming online advertises number of tokens it owns and rest of a nodes in a cluster will stream data (for token ranges) back to that node
+Adding multiple nodes at the same time
+* **vnodes cluster** - start up all nodes at once, otherwise you will end up pushing the same data to new nodes more than once as data reshuffles its position
+* **single-token cluster** there is no much difference - recommendation is one at the time to minimalize streaming effort
