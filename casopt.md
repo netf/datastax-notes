@@ -17,4 +17,4 @@ IP addresses that the nodes/clients will be communicating over
 ```
 -seeds
 ```
-List of nodes to initially connect to gather cluster topology
+List of nodes to initially connect to gather cluster topology. For operations simplicity it is prefered to use the same seed list for all machines
