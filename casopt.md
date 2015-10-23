@@ -26,4 +26,4 @@ We add new nodes in following scenarios
 * Too much traffic - if servers are not able to handle high troughput or latency is too high
 * Operational headroom - compactions, repairs
 
-#### Adding nodes best practices (https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
+#### [Adding nodes best practices] (https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
