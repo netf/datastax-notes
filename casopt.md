@@ -25,4 +25,4 @@ We add new nodes in following scenarios
 * Operationls headroom - compactions, repairs
 
 
-* [Best practices for adding nodes](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
+* [dding nodes](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-best-practices-adding-nodes)
