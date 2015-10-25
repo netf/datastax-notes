@@ -51,3 +51,11 @@ Node bootstrapping consist of followo
   * 30 second pause occurs to do following tasks for durability
     * Flush data in Memtables to disk
     * New system keyspace information flushes to disk for joining node
+5. Existing nodes locate appropriate keys from SSTables for data to stream
+6. Existing nodes stream only the SSTables that hold keys for the new node
+  * No data is removed from the new node
+7. Writes during this streaming period continue to be written to the existing node which owns it
+  * This writes get forwarded to the new node
+8. Joining node switching from JOINING to NORMAL state
+  * Write and read read requests will go now to the new node
+9. New node starts listener service for CQL calls (port 9042) and Thrift (port 9160)
