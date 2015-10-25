@@ -38,7 +38,8 @@ Adding multiple nodes at the same time
 #### [Add, Remove, Decommission, Move Nodes](https://academy.datastax.com/courses/ds210-datastax-enterprise-operations-and-performance-tuning/managing-cassandra-add-remove)
 
 #### [Bootstrap](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-bootstrap)
-Node bootstrapping consist of follow
+Node bootstrapping consist of followo
+
 1. Joining node contact a seed node
 2. Seed node sees incoming communication from the joining node
   * Shares cluster information with the joining node and token information that is assigned
