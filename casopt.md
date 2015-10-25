@@ -38,7 +38,7 @@ Adding multiple nodes at the same time
 #### [Add, Remove, Decommission, Move Nodes](https://academy.datastax.com/courses/ds210-datastax-enterprise-operations-and-performance-tuning/managing-cassandra-add-remove)
 
 #### [Bootstrap](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-bootstrap)
-Node bootstrapping consist of followo
+Node bootstrapping consist of a following steps
 
 1. Joining node contact a seed node
 2. Seed node sees incoming communication from the joining node
@@ -59,3 +59,5 @@ Node bootstrapping consist of followo
 8. Joining node switching from JOINING to NORMAL state
   * Write and read read requests will go now to the new node
 9. New node starts listener service for CQL calls (port 9042) and Thrift (port 9160)
+
+Sometimes we don't want to auto bootstrap the node. The most common case is bringing up a new datacenter (we want to wait for all the nodes in a new DC to be up before streaming the data over). In that case we might want to set **auto_bootstrap: false** property in *cassandra.yaml*
