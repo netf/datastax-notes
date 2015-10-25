@@ -67,3 +67,8 @@ auto_bootstrap: false** property in *cassandra.yaml*
 Cleanup operation reclaims a disk space. There is no need to run it as data is reclaimed when it goes through compaction process however cleanup operation speeds things up. We usually run it in following cases
 * Added new node to a cluster - each node shifts part if its partition range to the new node
 * Decreased replication factor
+Cleanup operation does "single table compaction" underneath - one SSTable at the time.
+It has to run on a node that we want to clean a data and looks like
+```
+nodetool cleanup -- <keyspace> (<table>)
+```
