@@ -72,3 +72,4 @@ It has to run on a node that we want to clean a data and looks like
 ```
 nodetool cleanup -- <keyspace> (<table>)
 ```
+If node keyspace is specified it will clean all keyspaces
