@@ -36,3 +36,17 @@ Adding multiple nodes at the same time
 * **single-token cluster** there is no much difference - recommendation is one at the time to minimalize streaming effort
 
 #### [Add, Remove, Decommission, Move Nodes](https://academy.datastax.com/courses/ds210-datastax-enterprise-operations-and-performance-tuning/managing-cassandra-add-remove)
+
+#### [Bootstrap](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-bootstrap)
+Node bootstrapping consist of follow
+1. Joining node contact a seed node
+2. Seed node sees incoming communication from the joining node
+  * Shares cluster information with the joining node and token information that is assigned
+  * Seed node and the joining node handshake
+3. Joining node calculates token(s) it is responsible for
+  * Shares token with a seed node
+  * Seed node and the joining node handshake again
+4. Existing nodes prepare to stream data to the joining node
+  * 30 second pause occurs to do following tasks for durability
+    * Flush data in Memtables to disk
+    * New system keyspace information flushes to disk for joining node
