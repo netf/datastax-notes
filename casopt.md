@@ -60,8 +60,10 @@ Node bootstrapping consist of a following steps
   * Write and read read requests will go now to the new node
 9. New node starts listener service for CQL calls (port 9042) and Thrift (port 9160)
 
-Sometimes we don't want to auto bootstrap the node. The most common case is bringing up a new datacenter (we want to wait for all the nodes in a new DC to be up before streaming the data over). In that case we might want to set
-auto_bootstrap: false** property in *cassandra.yaml*
+Sometimes we don't want to auto bootstrap the node. The most common case is bringing up a new datacenter (we want to wait for all the nodes in a new DC to be up before streaming the data over). In that case we might want to set property in *cassandra.yaml*
+```
+auto_bootstrap: false
+```
 
 #### [Cleanup](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-cleanup)
 Cleanup operation reclaims a disk space. There is no need to run it as data is reclaimed when it goes through compaction process however cleanup operation speeds things up. We usually run it in following cases
