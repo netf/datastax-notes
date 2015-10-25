@@ -78,3 +78,15 @@ If node keyspace is specified it will clean all keyspaces
 
 #### [Remove Node](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-remove-node)
 #### [Decommission](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-decommission)
+#### [Replace Node](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-replace-node)
+Benefits of replacing a downed node (in comparsion to adding and removing a node)
+* There is no need to shuffle data twice
+* Backup for a node will work for replaced node because same tokens are used to bring replaced node into a cluster
+To replace a downed node, bootstrap a new node using the IP address of the dead node as the **replace_address** value in JVM options in *cassandra-env.sh*
+```
+JVM_OPTS="$JVM_OPTS -Dcassandra.replace_address=<ip_address_of_a_dead_node>"
+```
+This means that this node advertises to rest of a nodes in a cluster that it is replacing IP address of a dead node and will own takens that were own by the dead node. Rest of a cluster will stream data for those tokens to a new machine.
+When replacing a seed node there are some other considerations
+* Go to every other node and change IP address in a seed list
+* A new node will not bootstrap automatically if it has its IP in a seed nodes
