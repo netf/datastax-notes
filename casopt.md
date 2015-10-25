@@ -73,3 +73,6 @@ It has to run on a node that we want to clean a data and looks like
 nodetool cleanup -- <keyspace> (<table>)
 ```
 If node keyspace is specified it will clean all keyspaces
+
+#### [Remove Node](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-remove-node)
+#### [Decommission](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/managing-cassandra-decommission)
