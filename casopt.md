@@ -60,4 +60,7 @@ Node bootstrapping consist of a following steps
   * Write and read read requests will go now to the new node
 9. New node starts listener service for CQL calls (port 9042) and Thrift (port 9160)
 
-Sometimes we don't want to auto bootstrap the node. The most common case is bringing up a new datacenter (we want to wait for all the nodes in a new DC to be up before streaming the data over). In that case we might want to set **auto_bootstrap: false** property in *cassandra.yaml*
+Sometimes we don't want to auto bootstrap the node. The most common case is bringing up a new datacenter (we want to wait for all the nodes in a new DC to be up before streaming the data over). In that case we might want to set following in *cassandra.yaml*
+```
+auto_bootstrap: false
+```
