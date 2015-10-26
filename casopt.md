@@ -104,6 +104,6 @@ Hinted handoff is configured with following settings
 hinted_handoff_enable: true
 max_hint_window_in_ms: 10800000 # 3 hours
 ```
-  * hinted_handoff_enable - enable/disable hinted handoff
-  * max_hint_window_in_ms - how long hints are going to be stored from. We don't want to keeps hints for too long because we buffer them locally on a disk. This takes up storage and IO
-    * Nodes offline longer are made consistent using repairs or other operations
+hinted_handoff_enable - enable/disable hinted handoff
+max_hint_window_in_ms - how long hints are going to be stored from. We don't want to keeps hints for too long because we buffer them locally on a disk. This takes up storage and IO
+Nodes offline longer are made consistent using repairs or other operations
