@@ -243,3 +243,23 @@ Follwing security mechanisms are supported
 
 
 It is recommended to increase *system_auth* keyspace replication factor to the number of nodes in a cluster
+
+#### [Rebuild Indexes](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-rebuild-index)
+Why would you rebuild secondary indexes?
+* Occasionally secondary indexes get out-of-sync
+* if you suspect that this happened it is easier to rebuild the indexes than to verify that there is a problem
+
+Rebuilding indexes:
+* doesn't affect consistency
+* doesn't drop the indexes
+* adds the data again to the index
+* consumes CPU and IO while operation happens
+
+Cassandra indexes:
+* under a hood are just cassnadra tables
+* index the data that is on the node
+
+Command to do that
+```
+nodetool rebuild_index keyspace table.index
+```
