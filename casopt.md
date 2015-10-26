@@ -108,3 +108,10 @@ max_hint_window_in_ms: 10800000 # 3 hours
 * hinted_handoff_enable - enable/disable hinted handoff
 * max_hint_window_in_ms - how long hints are going to be stored from. We don't want to keeps hints for too long because we buffer them locally on a disk. This takes up storage and IO
   * Nodes offline longer are made consistent using repairs or other operations
+
+How does it affect replication
+* Within the hint window, if gossip repots a node is back up, the node with the hinted handoff information sends the data for each hint to the target
+  * checks every 10 minutes (worst case) for any hints for writes that timed out during outage
+* Hinted write doesn't count towards consistency level (CL) requirements
+  * If there is no enough replica to satisfy CL an exception is thrown
+  * Consistency level **ANY** guarantees that write is durable and will be readabl after replica comes back online and can receive hint reply
