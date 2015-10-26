@@ -151,3 +151,29 @@ Repair synchronsies replicas and there are few types of repairs
     * build Merkle tree (tree of hashes) of data per partition
     * replicas then compare the difference between their trees and stream the data differences to each other as needed
     ![Merkle Tree](https://github.com/netf/datastax-notes/blob/master/merkle.png)
+  * in some cases it is faster to bring a new node online
+  * best practices
+    * run this once a week (within **gc_grace_seconds** period - default 10 days)
+    * run repair on a small subset of nodes at a time (preferably one)
+    * schedule for a low hour usage
+      * it is very IO heavy operation (validation compaction of Merkle trees)
+      * can be mitigated with compaction throttling
+    * run repair on a partition or subrange of partition
+
+  We can run repair operation with following
+  * repair a range of data
+  ```
+  nodetool repair --partitioner_range|-pr
+  ```
+    * repairs only primary range
+    * otherwise repair will take 2 / 3 times longer depending on a number of replicas
+  * repair a subrange
+  ```
+  nodetool repair --start-token <token> --end-token <token>
+  ```
+    * repairs only portion of data belonging to a node
+    * steps to use subrange repair
+      * use java *describe_splits* call to ask for a split containing 32K partition
+      * iterate through the entire range incrementally or in parallel
+      * pass the token received for the split to the nodetool repair -st and -et options
+      * pass the --local option to repair only within the local data center, reducing cross data center transfer load
