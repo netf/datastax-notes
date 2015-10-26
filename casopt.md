@@ -137,9 +137,17 @@ Consequences of changing the replication factor
 
 #### [Repair](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-repair)
 Repair synchronsies replicas and there are few types of repairs
-* read repair - a *digest* query is sent to replica nodes, and nodes with stale data are updated in a background
+* read repair - a *digest* query is sent to replica nodes, and nodes with stale data are updated in a background. If data discrepency is found the data is repaired based on a timestamp (latest timestamp wins) and result is returned to the client
   * digest query returns a hash to check current data state, rather than return a complete query
   * **read_repair_chance**, set as a table property value between 0 and 1, to set probability with which read repair should be invoked on non-quorum reads
     * defautls to 0
     * can be configured per table
-  * **dclocal_read_repair_chance**, set per data center. defaults to 0.1 (10%)
+  * **dclocal_read_repair_chance**, set per data center. defaults to 0.1 (10% of our queries will perform LOCAL_ALL and check data across all replicas)
+* repair (an action to cope with with cluster entropy)
+  * entropy can arise from nodes that were down for longer than hint window, dropped mutations or other causes
+  * a repair operates on all of a nodes in a replica set by default
+  * ensures that all replicas have identical copies of a given partition
+  * consist of following phases
+    * build Merkle tree (tree of hashes) of data per partition
+    * replicas then compare the difference between their trees and stream the data differences to each other as needed
+    ![Merkle Tree](https://github.com/netf/datastax-notes/blob/master/merkle.png)
