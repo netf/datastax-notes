@@ -20,7 +20,7 @@ List of nodes to initially connect to gather cluster topology. For operations si
 
 We add new nodes in following scenarios
 
-* Too much data - data has outgrown the node's hardware capacity. Currently best recommendation of how much data to store depends on a type of media that is used to store data. If it is based on rotational drives it is recommended to go up to **1 GB** per server. If it is SSD backed storage it can be much higer - **3-5GB** per node.
+* Too much data - data has outgrown the node's hardware capacity. Currently best recommendation of how much data to store depends on a type of media that is used to store data. If it is based on rotational drives it is recommended to go up to **1 TB** per server. If it is SSD backed storage it can be much higer - **3-5TB** per node.
 * Too much traffic - if servers are not able to handle high troughput or latency is too high
 * Operational headroom - compactions, repairs
 
