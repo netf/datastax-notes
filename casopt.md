@@ -133,3 +133,12 @@ Consequences of changing the replication factor
 * if RF is lowered to *RF = 1* then *QUORUM* becomes *ALL*
 * if replication factor is raised, read and write failures may occur until repair operation completes
 * consistency level of two or higher are more likely to cause blocking read repair
+
+#### [Repair](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-repair)
+Repair synchronsies replicas and there are few types of repairs
+* read repair - a *digest* query is sent to replica nodes, and nodes with stale data are updated in a background
+  * digest query returns a hash to check current data state, rather than return a complete query
+  * **read_repair_chance**, set as a table property value between 0 and 1, to set probability with which read repair should be invoked on non-quorum reads
+    * defautls to 0
+    * can be configured per table
+  * **dclocal_read_repair_chance**, set per data center. defaults to 0.1 (10%)
