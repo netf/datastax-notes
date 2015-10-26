@@ -202,3 +202,10 @@ Ways to take backup and snapshots
   * both snapshot and incremental backup are **needed** to restore data
   * incremental backups are not automatically cleared
 * offline backups (which are snapshots shipped to a safe place disconnected from a cluster)
+
+Snapshots/Backups do not backup schma information so order to backup it is important to backup schema information as well
+
+Defaut auto snapshot ensures that snapshot will be taken when dropping a table (this is default and protects against human errors)
+```
+auto_snapshot: true
+```
