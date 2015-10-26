@@ -177,3 +177,5 @@ Repair synchronsies replicas and there are few types of repairs
       * iterate through the entire range incrementally or in parallel
       * pass the token received for the split to the nodetool repair -st and -et options
       * pass the --local option to repair only within the local data center, reducing cross data center transfer load
+
+#### [Backup and recovery](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-backup-and-recovery)
