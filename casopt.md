@@ -201,14 +201,26 @@ Ways to take backup and snapshots
   * snapshot information is stored under *snapshots* directory while incremental backups are stored in *backups* under a keyspace data directory
   * both snapshot and incremental backup are **needed** to restore data
   * incremental backups are not automatically cleared
-* offline backups (which are snapshots shipped to a safe place disconnected from a cluster)
+* opscenter backup and restore service (DSE only)
 
 Snapshots/Backups do not backup schema information so order to backup it is important to backup schema information as well
 
 Default **auto_snapshot** ensures that snapshot will be taken when dropping a table (this is default and protects against human errors)
+
 The **nodetool snapshot** command takes a snapshot of
 * one or more keyspaces
 * a table specified to backup data
 ```
 nodetool snapshot [options] snapshot (-cf <table> | -t <tag> | -- keyspace)
 ```
+
+When we want to remove snapshot we use **nodetool clearsnapshot**
+
+To restore snapshot we can
+* delete current data directory and copy the snapshot and incremental files to the data directories
+  * if using incremental backups, copy the content of the backups directory to each table directory
+  * table schema must already be present
+  * restart (or run *nodetool refresh*) and repair the node after the file copying is done
+* using *sstableloader*
+  * needs to be careful - can add significant load to cluster while loading
+  * if there is not an exactly alighment (for example from 4 node cluster to 6 node cluster) this just about the only way to restore
