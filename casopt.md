@@ -235,10 +235,11 @@ Follwing security mechanisms are supported
   * Protects data stored on disk (data at rest)
 * Authentication
   * Based on internally controlled accounts and passwords
-  ![Grant and revoke](https://github.com/netf/datastax-notes/blob/master/grant_revoke.png)
   * Passwords internally are encrypted using **bcrypt**
   * LDAP/AD integration (**DSE only**)
 * Object Permission Management
   * Authorization can be granted or revoked per user to access database objects
+  ![Grant and revoke](https://github.com/netf/datastax-notes/blob/master/grant_revoke.png)
+
 
 It is recommended to increase *system_auth* keyspace replication factor to the number of nodes in a cluster
