@@ -224,3 +224,21 @@ To restore snapshot we can
 * using *sstableloader*
   * needs to be careful - can add significant load to cluster while loading
   * if there is not an exactly alighment (for example from 4 node cluster to 6 node cluster) this just about the only way to restore
+
+#### [Security](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-security)
+Follwing security mechanisms are supported
+* Client-to-node encryption
+  * SSL is used to ensure data is not compromised while transferring between client and a server
+* Node-to-node encryption
+  * Protects data transfer between nodes in a cluster
+* Transparent data encryption (**DSE only**)
+  * Protects data stored on disk (data at rest)
+* Authentication
+  * Based on internally controlled accounts and passwords
+  ![Grant and revoke](https://github.com/netf/datastax-notes/blob/master/grant_revoke.png)
+  * Passwords internally are encrypted using **bcrypt**
+  * LDAP/AD integration (**DSE only**)
+* Object Permission Management
+  * Authorization can be granted or revoked per user to access database objects
+
+It is recommended to increase *system_auth* keyspace replication factor to the number of nodes in a cluster
