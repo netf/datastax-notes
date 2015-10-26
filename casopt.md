@@ -179,3 +179,26 @@ Repair synchronsies replicas and there are few types of repairs
       * pass the --local option to repair only within the local data center, reducing cross data center transfer load
 
 #### [Backup and recovery](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-backup-and-recovery)
+Reasons to perform backup with Cassandra
+* programmatic accidental deletion or overwriting of data
+  * changes could be propagated to all replicas before error is noticed
+  * corrupted SSTables can be restored from snapshots and incremental snapshots
+* to recover from catastrophic single data center failure
+  * offline snapshots can be used
+
+Two options to do backups:
+* snapshots
+  * represents state of date in a particular point in time
+  * consists of a single table, single keyspace, or multiple keyspaces
+  * flushes all in-memory writes to SSTables on disk
+  * makes hard links to SSTables for each keyspace in a snapshot directory
+* incremental backups
+  * data which is changed since last full snapshot
+  * configured in *cassandra.yaml* with
+  ```
+  incremental_backup: true
+  ```
+  * snapshot information is stored under *snapshots* directory while incremental backups are stored in *backups* under a keyspace data directory
+  * both snapshot and incremental backup are **needed** to restore data
+  * incremental backups are not automatically cleared
+* offline backups (which are snapshots shipped to a safe place disconnected from a cluster)
