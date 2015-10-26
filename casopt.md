@@ -127,3 +127,9 @@ First we have to understand Consistency Levels
 * **LOCAL_** and **EACH_** modify some consistency Levels
   * LOCAL_ONE, LOCAL_QUORUM, LOCAL_SERIAL restrict the validation to data center
   * EACH_QUORUM requires validation from each data center in the cluster
+
+Consequences of changing the replication factor
+* changing RF in production environment can have dire consequences (and isnt recommended)
+* if RF is lowered to *RF = 1* then *QUORUM* becomes *ALL*
+* if replication factor is raised, read and write failures may occur until repair operation completes
+* consistency level of two or higher are more likely to cause blocking read repair
