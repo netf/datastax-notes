@@ -203,9 +203,12 @@ Ways to take backup and snapshots
   * incremental backups are not automatically cleared
 * offline backups (which are snapshots shipped to a safe place disconnected from a cluster)
 
-Snapshots/Backups do not backup schma information so order to backup it is important to backup schema information as well
+Snapshots/Backups do not backup schema information so order to backup it is important to backup schema information as well
 
-Defaut auto snapshot ensures that snapshot will be taken when dropping a table (this is default and protects against human errors)
+Default **auto_snapshot** ensures that snapshot will be taken when dropping a table (this is default and protects against human errors)
+The **nodetool snapshot** command takes a snapshot of
+* one or more keyspaces
+* a table specified to backup data
 ```
-auto_snapshot: true
+nodetool snapshot [options] snapshot (-cf <table> | -t <tag> | -- keyspace)
 ```
