@@ -116,3 +116,7 @@ How does it affect replication
 * Hinted write doesn't count towards consistency level (CL) requirements
   * If there is no enough replica to satisfy CL an exception is thrown
   * Consistency level **ANY** guarantees that write is durable and will be readabl after replica comes back online and can receive hint reply
+
+#### [Changing replication factor](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-changing-replication-factor)
+Changing replication factor affects Consistency Level so first we have to understand CL
+![CL](https://github.com/netf/datastax-notes/blob/master/cl.png)
