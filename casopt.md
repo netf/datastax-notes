@@ -91,7 +91,8 @@ When replacing a seed node there are some other considerations
 * Go to every other node and change IP address in a seed list
 * A new node will not bootstrap automatically if it has its IP in a seed nodes
 
-#### [Maintaing Cassandra & Hinted Handoff](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-maintaining-cassandra-and)
+### Maintaing Cassandra
+#### [Hinted Handoff](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-maintaining-cassandra-and)
 * Recovery mechanism for writes targeting offline nodes
 * Coordinator can store a hinted handoff if target node is downed
   * is know to be downed
