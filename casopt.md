@@ -186,7 +186,7 @@ Reasons to perform backup with Cassandra
 * to recover from catastrophic single data center failure
   * offline snapshots can be used
 
-Two options to do backups:
+Ways to take backup and snapshots
 * snapshots
   * represents state of date in a particular point in time
   * consists of a single table, single keyspace, or multiple keyspaces
