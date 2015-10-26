@@ -118,5 +118,12 @@ How does it affect replication
   * Consistency level **ANY** guarantees that write is durable and will be readabl after replica comes back online and can receive hint reply
 
 #### [Changing replication factor](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/maintaining-cassandra-changing-replication-factor)
-Changing replication factor affects Consistency Level so first we have to understand CL
+First we have to understand Consistency Levels
 ![CL](https://github.com/netf/datastax-notes/blob/master/cl.png)
+* Meeting the consistency level set for a read and a write depends on
+  * replication factor
+  * replicas available at the time of a read/write operation
+* replication factor directly affect calculation of **QUORUM**
+* **LOCAL_** and **EACH_** modify some consistency Levels
+  * LOCAL_ONE, LOCAL_QUORUM, LOCAL_SERIAL restrict the validation to data center
+  * EACH_QUORUM requires validation from each data center in the cluster
