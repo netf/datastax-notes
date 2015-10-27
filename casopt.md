@@ -263,3 +263,14 @@ Command to do that
 ```
 nodetool rebuild_index keyspace table.index
 ```
+
+#### [Multiple datacenters](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/multiple-data-centers-multiple-data-centers)
+How are nodes organised as racks and data centers?
+* Cluster of nodes can be logically grouped as *racks* and *data centers*
+  * nodes - the virtual or physical host of a single Cassandra node
+  * racks - the logical grouping of physical related nodes
+  * data centers - logical group of a set of racks
+* Enables geographically aware read nad write request routing
+  * cluster topology is communicated as the **Snitch** and **Gossip**
+* Each node belongs to one rack in one data center
+* The identity of each node's rack and data center may be configured in its **conf/cassandra-rackdc.properties** file (when using *GossipingPropertyFileSnitch*)
