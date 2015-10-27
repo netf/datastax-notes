@@ -339,3 +339,12 @@ It is important to clearly define a goal for performance tuning. Following are t
 
 Example of a well defined goal
   ![Goal](https://github.com/netf/datastax-notes/blob/master/perf_goal.png)
+
+Goal verification
+* Timing hooks in the application
+* Query tracing
+* jmeter test plan
+* customizable cassandra-stress
+
+Latency diagram
+![Latency](https://github.com/netf/datastax-notes/blob/master/perf_latency.png)
