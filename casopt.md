@@ -336,5 +336,6 @@ It is important to clearly define a goal for performance tuning. Following are t
   * Expressed in minutes or hours
 * Scope
   * Keyspace, table
-* Example
+
+Example of a well defined goal
   ![Goal](https://github.com/netf/datastax-notes/blob/master/perf_goal.png)
