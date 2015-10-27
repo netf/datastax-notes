@@ -348,3 +348,8 @@ Goal verification
 
 Latency diagram
 ![Latency](https://github.com/netf/datastax-notes/blob/master/perf_latency.png)
+Common latency timings in Cassandra
+* Reads from main memory should take between **36 - 130** microseconds
+* Reads from SSDs should take take between **100** microseconds and **12** miliseconds
+* Reads from Serial Attached SCSI rotational drives should take between **8** miliseconds and **40** miliseconds
+* Reads from SATA rotational drives take more than **15** miliseconds
