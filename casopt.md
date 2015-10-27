@@ -314,3 +314,27 @@ How to use multiple DC
   * allows cassandra to distribute replicas
   * all nodes must have exactly same snitch configuration
   ![Snitches](https://github.com/netf/datastax-notes/blob/master/snitches.png)
+
+Some considerations when using multiple DC
+* WAN bandwidth - how quickly can we push data to a new DC
+* Consistency level - how much data must be pushed to establish correct amount of repication needed to meet consitency level
+* OpsCenter is a usuful tool for watching the progress of a new DC coming up
+
+### Performance Tuning
+#### [Goals](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/performance-tuning-goals)
+It is important to clearly define a goal for performance tuning. Following are the attributes of a goal
+* Type of operation or query
+  * Read or Write
+  * SELECT, INSERT, UPDATE, DELETE
+* Latency
+  * Expressed as a percentile rank - ie: "95th" percentile read latency is 2 ms
+* Throughput
+  * Expressed as operations per second
+* Size
+  * Expressed in averages of bytes
+* Duration
+  * Expressed in minutes or hours
+* Scope
+  * Keyspace, table
+* Example
+  ![Goal](https://github.com/netf/datastax-notes/blob/master/perf_goal.png)
