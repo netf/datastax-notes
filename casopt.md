@@ -313,3 +313,4 @@ How to use multiple DC
   * ensures requests are routed efficently
   * allows cassandra to distribute replicas
   * all nodes must have exactly same snitch configuration
+  ![Snitches](https://github.com/netf/datastax-notes/blob/master/snitches.png)
