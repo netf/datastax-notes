@@ -274,3 +274,42 @@ How are nodes organised as racks and data centers?
   * cluster topology is communicated as the **Snitch** and **Gossip**
 * Each node belongs to one rack in one data center
 * The identity of each node's rack and data center may be configured in its **conf/cassandra-rackdc.properties** file (when using *GossipingPropertyFileSnitch*)
+
+Reasons for second DC
+* Ensures continous availability of application
+  * If one DC is affected by disaster, Cassandra keeps on working in second DC
+* Live backup
+  * If data centers are in the same physical location, but are configured as separate virtual data centers then a fallback cluster can be quickly switched on when needed  
+* Improved performance
+  * Latency is reduced when data is accessed from a local DC
+* Search (*solr*) and Analytics (*spark*) integration (**DSE only**)
+  * Workload isolation
+
+How does Cassandra cluster operate between data centers?
+* A data center is a grouping of nodes configured together for replication purposes
+  * different replication factors and consistency levels can be configured
+* Data replicates across data centers automatically and transparently
+  * Data replicates in each data center depending on the replication factor (using remote coordinator)
+* Consistency level *LOCAL* restricts actions to the local data center
+* Consitency level *EACH* all data centers to be read/write to receive acknowledge
+
+What happens when DC goes down?
+* Failure of a data center will likely go unnoticed
+* if node(s) fail, they will stop communicating via gossip
+  * will be marked as DOWN but it takes around 10 seconds to figure that out
+* recovery can be accomplished in following ways
+  * if outage is brief - under *max_hint_window_in_ms* - hints will be sent to the DC after it comes back online
+  * if outage is longer than *max_hint_window_in_ms* but shorter than *gc_grace_seconds* rolling repair can be used
+  * if it's longer than *gc_grace_seconds* it is better to bootstrap a new DC
+
+How to use multiple DC
+* Use **NetworkTopologyStrategy** instead of SimpleStrategy
+  * Allows for awareness for racks and datacenters
+  * Can specify number of replicas per DC
+* Use **LOCAL_** consistency level for read/write operations to limit latency
+* If possible define one rack for entire DC (basically replication factor should be divisible by the number of racks - one rack makes things simple)
+* Specify the Snitch
+  * informs Cassandra about network topology
+  * ensures requests are routed efficently
+  * allows cassandra to distribute replicas
+  * all nodes must have exactly same snitch configuration
