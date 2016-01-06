@@ -348,8 +348,30 @@ Goal verification
 
 Latency diagram
 ![Latency](https://github.com/netf/datastax-notes/blob/master/perf_latency.png)
-Common latency timings in Cassandra
+Common latency timings in Cassandra (single servers)
 * Reads from main memory should take between **36 - 130** microseconds
 * Reads from SSDs should take take between **100** microseconds and **12** miliseconds
 * Reads from Serial Attached SCSI rotational drives should take between **8** miliseconds and **40** miliseconds
 * Reads from SATA rotational drives take more than **15** miliseconds
+
+#### [Workload characterization](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/performance-tuning-workload-characterization)
+Here are some important questions to ask about a load
+* what is the load being places on your cluster
+  * Calling application or API
+  * remote IP address
+* Who is causing the load
+  * code path or stack trace
+* Why is the load being called
+* What are the load characteristics
+  * Throughput
+  * Direction (read/write)
+  * Include variance (standard deviation)
+  * Keyspace and table
+* How is the load changing over time and is there a pattern
+* Is your workload read heavy or write heavy
+* How big is your data (per cluster)
+* How much data on each node (data density per node)
+* Does active data fits into buffer cache
+
+#### [Performance Impact of Data Model](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/performance-tuning-performance-impact-data-model)
+
