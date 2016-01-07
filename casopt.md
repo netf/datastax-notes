@@ -375,3 +375,45 @@ Here are some important questions to ask about a load
 
 #### [Performance Impact of Data Model](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/performance-tuning-performance-impact-data-model)
 
+How does data model affect performance. In Cassandra data model is tightly coupled to performance - has more impact than anything else.
+Impact of data model on performance
+* Poorly shaped rows (too narrow or too wide) 
+  ** Too narrow - partitions are too small so to get data that we need we have to query multiple partitions
+* Hotspots (particular areas with loads of read/writes)
+* Poor primary or secondary indexes
+* Too many tombstones
+  ** Workload that has lots of deletes and then reading data around the partitions where data was deleted
+
+Data model considerations
+* Understand how primary key affects performance
+* Take a look at query patterns and adjust how tables are modeled
+* See how replication factor and/or consistency level impact performance
+* Change in compaction strategy can have a possitive (or negative) impact
+* Parallelize reads/writes if necessary
+* Look at how moving infrenquently accessed data can improved performance
+* See how per column family cache is having an impact
+
+What is the relationship between the data model and Cassandra's read path optimizations (key/row cache, bloom filters, index)?
+Relationship between data model and Cassandra's read path optimization
+* Nesting data
+  ** Nesting data allows for greater degree of flexibilty in the column family structure
+* Model to keep the most active data sets in a cache
+  ** Frequently accessed data which are in cache can improve performance  
+
+#### [Methodologies](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/performance-tuning-methodologies)
+Performence tuning methodologies
+* Active performence tuning
+  ** Isolate problems using provided tools
+  ** Determine if problem is with Cassandra, environment or both
+  ** Verify problems and test reproducibility 
+  ** Fix problems using tuning strategies provided
+  ** Test, test and test again
+* Passive performance tuning
+  ** Regulary monitor key health areas in Cassandra/Environment using tools provided
+  ** Identify and grow for future growth/scalability
+  ** Apply tuning strategies as needed
+* The USE method (utilisation, saturation and errors)
+  ** Real goal is of this method is to collect methodolically whole spectrum of data - so we can have a complete view of the system
+
+### Cassandra Tuning
+#### [Apache Cassandra](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/cassandra-tuning-cassandra-tuning)
