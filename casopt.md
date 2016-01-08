@@ -436,5 +436,6 @@ How does Cassandra organize all of that work?
 * Staged-Event-Driven-Architecture (SEDA)
   * Separates different tasks into stages that are connected by message passing
   * Each like task is grouped into a stage having a queue and a thread pool
+
 What is a thread pool?
   ![Goal](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
