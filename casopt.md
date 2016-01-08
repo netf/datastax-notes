@@ -417,7 +417,7 @@ Performence tuning methodologies
 
 ### Cassandra Tuning
 #### [Apache Cassandra](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/cassandra-tuning-cassandra-tuning)
-Cassandra Cluster level activities
+#### Cassandra Cluster level activities
 * coordinator
 * gossip
 * replication
@@ -426,15 +426,13 @@ Cassandra Cluster level activities
 * bootstrapping
 * node removal
 * node decommissioning
-
-What does single Cassandra node do?
+#### What does single Cassandra node do?
 * Read
 * Write
 * Maintain consistency
 * Monitor
 * Participate in a cluster
-
-How does Cassandra organize all of that work?
+#### How does Cassandra organize all of that work?
 * Staged-Event-Driven-Architecture (SEDA)
   * Separates different tasks into stages that are connected by message passing
   * Each like task is grouped into a stage having a queue and a thread pool
