@@ -444,3 +444,44 @@ Performence tuning methodologies
 
 ##### What are Cassandra's thread pools
   ![Cassandra's Thread pools](https://github.com/netf/datastax-notes/blob/master/cassandrathreadpool.png)
+In Cassandra we check C* Thread Pool statistics using *nodetool tpstats*. It has following headers:
+* Active - number of messages pulled off the queue, currently being processed by a thread
+* Pending - number of messages in a queue waiting for a thread
+* Completed - number of messages completed
+* Blocked - when pool reaches its max thread count it will begin queuing until the max size is reached. When this is reached it will block until there is a room in the queue
+* Total Blocked/All Time Blocked - total number of messages that have been blocked
+```
+Pool Name                    Active   Pending      Completed   Blocked  All time blocked
+MutationStage                     0         0          11416         0                 0
+ReadStage                         0         0        3423564         0                 0
+RequestResponseStage              0         0             37         0                 0
+ReadRepairStage                   0         0              0         0                 0
+CounterMutationStage              0         0              0         0                 0
+MiscStage                         0         0              0         0                 0
+HintedHandoff                     0         0              0         0                 0
+GossipStage                       0         0              0         0                 0
+CacheCleanupExecutor              0         0              0         0                 0
+InternalResponseStage             0         0              0         0                 0
+CommitLogArchiver                 0         0              0         0                 0
+CompactionExecutor                0         0         178199         0                 0
+ValidationExecutor                0         0              0         0                 0
+MigrationStage                    0         0             13         0                 0
+AntiEntropyStage                  0         0              0         0                 0
+PendingRangeCalculator            0         0              1         0                 0
+Sampler                           0         0              0         0                 0
+MemtableFlushWriter               0         0            493         0                 0
+MemtablePostFlush                 0         0           9877         0                 0
+MemtableReclaimMemory             0         0            493         0                 0
+Native-Transport-Requests         0         0        6350258         0                 0
+
+Message type           Dropped
+READ                         0
+RANGE_SLICE                  0
+_TRACE                       0
+MUTATION                     0
+COUNTER_MUTATION             0
+BINARY                       0
+REQUEST_RESPONSE             0
+PAGED_RANGE                  0
+READ_REPAIR                  0
+```
