@@ -487,3 +487,5 @@ REQUEST_RESPONSE             0
 PAGED_RANGE                  0
 READ_REPAIR                  0
 ```
+How Thread Pools relate to system components (single threaded are in red)
+![Thread pool to system component](https://github.com/netf/datastax-notes/blob/master/threadpoolrelate.png)
