@@ -443,4 +443,4 @@ Performence tuning methodologies
   ![Thread pool](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
 
 ##### What are Cassandra's thread pools
-  ![Cassandra's Thread pools](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
+  ![Cassandra's Thread pools](https://github.com/netf/datastax-notes/blob/master/cassandrathreadpool.png)
