@@ -489,3 +489,13 @@ READ_REPAIR                  0
 ```
 How Thread Pools relate to system components (single threaded are in red)
 ![Thread pool to system component](https://github.com/netf/datastax-notes/blob/master/threadrelate.png)
+##### Multi-Threaded stages
+* ReadStage - (affected by main memory, disk) - perform local reads
+* MutationStage - (affected by CPU, main memory, disk) - perform local insert/update, schema merge, commit log replay, hints in progress
+* RequestResponseStage - (affected by network, other nodes) - when a response to a request is received this is the stage used to execute any callbacks that were created with the original requests
+* FlushWriter - (affected by CPU, disk) - sort and flush memtables to disk
+* HintedHandoff - (one thread per host) - sends missing mutations to other nodes
+* MemoryMeter - (several separate threads) - measure memory usage
+* ReadRepairStage - (affected by network, other nodes) - perform read repair
+* CounterMutation - perform counter writes on non-coordinator nodes and replicates after a local write
+* InternalResponseStage - Responds to non-client initiated messaging, including bootstrapping and schema changes
