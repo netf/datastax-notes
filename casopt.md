@@ -450,6 +450,7 @@ In Cassandra we check C* Thread Pool statistics using **nodetool tpstats**. It h
 * Completed - number of messages completed
 * Blocked - when pool reaches its max thread count it will begin queuing until the max size is reached. When this is reached it will block until there is a room in the queue
 * Total Blocked/All Time Blocked - total number of messages that have been blocked
+
 Output of **nodetool tpstats**
 ```
 Pool Name                    Active   Pending      Completed   Blocked  All time blocked
