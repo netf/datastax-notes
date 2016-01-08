@@ -377,7 +377,7 @@ Here are some important questions to ask about a load
 
 How does data model affect performance. In Cassandra data model is tightly coupled to performance - has more impact than anything else.
 Impact of data model on performance
-* Poorly shaped rows (too narrow or too wide) 
+* Poorly shaped rows (too narrow or too wide)
   * Too narrow - partitions are too small so to get data that we need we have to query multiple partitions
 * Hotspots (particular areas with loads of read/writes)
 * Poor primary or secondary indexes
@@ -405,7 +405,7 @@ Performence tuning methodologies
 * Active performence tuning
   * Isolate problems using provided tools
   * Determine if problem is with Cassandra, environment or both
-  * Verify problems and test reproducibility 
+  * Verify problems and test reproducibility
   * Fix problems using tuning strategies provided
   * Test, test and test again
 * Passive performance tuning
@@ -417,3 +417,24 @@ Performence tuning methodologies
 
 ### Cassandra Tuning
 #### [Apache Cassandra](https://academy.datastax.com/courses/ds210-operations-and-performance-tuning/cassandra-tuning-cassandra-tuning)
+Cassandra Cluster level activities
+* coordinator
+* gossip
+* replication
+* repair
+* read repair
+* bootstrapping
+* node removal
+* node decommissioning
+What does single Cassandra node do?
+* Read
+* Write
+* Maintain consistency
+* Monitor
+* Participate in a cluster
+How does Cassandra organize all of that work?
+* Staged-Event-Driven-Architecture (SEDA)
+  * Separates different tasks into stages that are connected by message passing
+  * Each like task is grouped into a stage having a queue and a thread pool
+What is a thread pool?
+  ![Goal](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
