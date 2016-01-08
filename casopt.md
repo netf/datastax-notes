@@ -444,12 +444,13 @@ Performence tuning methodologies
 
 ##### What are Cassandra's thread pools
   ![Cassandra's Thread pools](https://github.com/netf/datastax-notes/blob/master/cassandrathreadpool.png)
-In Cassandra we check C* Thread Pool statistics using *nodetool tpstats*. It has following headers:
+In Cassandra we check C* Thread Pool statistics using **nodetool tpstats**. It has following headers:
 * Active - number of messages pulled off the queue, currently being processed by a thread
 * Pending - number of messages in a queue waiting for a thread
 * Completed - number of messages completed
 * Blocked - when pool reaches its max thread count it will begin queuing until the max size is reached. When this is reached it will block until there is a room in the queue
 * Total Blocked/All Time Blocked - total number of messages that have been blocked
+Output of **nodetool tpstats**
 ```
 Pool Name                    Active   Pending      Completed   Blocked  All time blocked
 MutationStage                     0         0          11416         0                 0
