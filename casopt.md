@@ -499,3 +499,39 @@ How Thread Pools relate to system components (single threaded are in red)
 * ReadRepairStage - (affected by network, other nodes) - perform read repair
 * CounterMutation - perform counter writes on non-coordinator nodes and replicates after a local write
 * InternalResponseStage - Responds to non-client initiated messaging, including bootstrapping and schema changes
+
+##### Single-Threaded stages
+* GossipStage - (affected by network) - Gossip communication
+* AntiEntropyStage - (affected by network, other nodes) - Build Merkle trees and repair consistency
+* MigrationStage - (affected by network, other nodes) - Make schema changes
+* MiscStage - (affected by disk, network, other nodes) - Snapshotting; replicating data after node remove
+* MemtablePostFlusher - (affected by disk) - Operations after flushing a memtable. Discard commit log files that have all data in them persisted to sstables. Flush non-column family backed seconadry indexes
+* Tracing - query tracing
+* CommitLogArchiver - back up or restore commit log
+
+##### Message Types
+* Handled by ReadStage thread pool
+  * READ: read data from cache or disk
+  * RANGE_SLICE: read a range of data
+  * PAGE_RANGE: read part of a range of data
+* Handled by MutationStage thread pool
+  * MUTATION: write (insert or update or delete) data
+  * COUNTER_MUTATION: changes counter column
+  * READ_REPAIR: update out-of-sync data discovery during a read
+* Handled by ReadResponseStage
+  * REQUEST_RESPONSE: respond to coordinator
+  * \_TRACE: used to trace a query
+
+##### Why are some messages types droppable?
+* Some messages can be dropped to prioritize activites in Cassandra when high resource contention occurs
+* Dropped messages should be investigated
+
+### Cassandra stats observability tools
+* nodetool
+
+* OpsCenter
+
+
+
+Links:
+* http://www.pythian.com/blog/guide-to-cassandra-thread-pools/
