@@ -426,12 +426,14 @@ Cassandra Cluster level activities
 * bootstrapping
 * node removal
 * node decommissioning
+
 What does single Cassandra node do?
 * Read
 * Write
 * Maintain consistency
 * Monitor
 * Participate in a cluster
+
 How does Cassandra organize all of that work?
 * Staged-Event-Driven-Architecture (SEDA)
   * Separates different tasks into stages that are connected by message passing
