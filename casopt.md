@@ -438,6 +438,9 @@ Performence tuning methodologies
 * Staged-Event-Driven-Architecture (SEDA)
   * Separates different tasks into stages that are connected by message passing
   * Each like task is grouped into a stage having a queue and a thread pool
-  
+
 ##### What is a thread pool?
-  ![Goal](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
+  ![Thread pool](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
+
+##### What are Cassandra's thread pools
+  ![Cassandra's Thread pools](https://github.com/netf/datastax-notes/blob/master/threadpool.png)
