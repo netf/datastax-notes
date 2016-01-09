@@ -526,10 +526,21 @@ How Thread Pools relate to system components (single threaded are in red)
 * Some messages can be dropped to prioritize activites in Cassandra when high resource contention occurs
 * Dropped messages should be investigated
 
-### Cassandra stats observability tools
-* nodetool
-
+### What is the current state of a cluster? (observability tools)
+* nodetool (cmd line(right now) view of a system)
+  * nodetool tpstats  - threadpool statistics
+  * nodetool compactionstats - compaction statistics
+  * nodetool netstats - statistics that display network information, such as of streaming operations and number of active, pending, completed commands and responses. looking at read repair statisics we can see how out of sync is our cluster
 * OpsCenter
+  * web based dashboard
+  * stores metrics and allows to query them over time
+  * provides ability to create new clusters, add edit and remove nodes, run repairs
+  * can collect JVM characteristics
+  * all cassandra metrics - compactions, repairs, flushes, gossip, hinted handoff
+* Changing logging level
+  * nodetool getlogginglevels - to get current logging levels  
+  * nodetool setlogginglevel - sets logging level
+  * possible leves are: ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
 
 
