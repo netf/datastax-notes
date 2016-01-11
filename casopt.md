@@ -542,6 +542,13 @@ How Thread Pools relate to system components (single threaded are in red)
   * nodetool setlogginglevel - sets logging level
   * possible leves are: ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
+### Cassandra Tuning - Data Model
+* performance tuning components
+  * workload
+  * data model
+  * software tuning (OS, JVM, Cassandra)
+  * hardware 
+
 
 
 Links:
